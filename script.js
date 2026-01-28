@@ -24,6 +24,7 @@ Book.prototype.toggleRead = function () {
 function addBookToLibrary(title, author, pages, read) {
   let book = new Book(title, author, pages, read);
   myLibrary.push(book);
+  loadBooks();
 }
 
 function loadBooks() {
@@ -72,5 +73,12 @@ function removeBook(book_id) {
     loadBooks();
 }
 
-addBookToLibrary("Linux", "amr loksha", 1000, false);
-loadBooks();
+const FormSubmit = document.getElementById("submit");
+FormSubmit.addEventListener("click", (e) => {
+    e.preventDefault();
+    addBookToLibrary(document.getElementById("inputBookTitle").value, document.getElementById("inputBookAuthor").value, Number(document.getElementById("inputBookPages").value), Boolean(document.getElementById("inputBookRead").value));
+})
+
+document.addEventListener("DOMContentLoaded", (e) => {
+    loadBooks();
+})
