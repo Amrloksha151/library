@@ -16,6 +16,11 @@ function Book(title, author, pages, read) {
   this.read = read;
 }
 
+Book.prototype.toggleRead = function () {
+    this.read = !this.read;
+    loadBooks();
+}
+
 function addBookToLibrary(title, author, pages, read) {
   let book = new Book(title, author, pages, read);
   myLibrary.push(book);
@@ -43,7 +48,7 @@ function loadBooks() {
             ${BOOK.read ? "Yes" : "No"}
         </td>
         <td>
-            <button onclick="toggleRead('${BOOK.id}')" class="btn btn-dark">Change</button>
+            <button onclick="const BOOK = getBookById('${BOOK.id}'); BOOK.toggleRead();" class="btn btn-dark">Change</button>
         </td>
         <td>
             <button onclick="removeBook('${BOOK.id}')" class="btn btn-danger">Remove</button>
@@ -59,12 +64,6 @@ function getBookById(book_id) {
             return BOOK;
         }
     }
-}
-
-function toggleRead(book_id) {
-    const BOOK = getBookById(book_id);
-    BOOK.read = !BOOK.read;
-    loadBooks();
 }
 
 function removeBook(book_id) {
