@@ -16,6 +16,14 @@ function Book(title, author, pages, read) {
   this.read = read;
 }
 
-function addBookToLibrary() {
-  // take params, create a book then store it in the array
+function addBookToLibrary(title, author, pages, read) {
+  let book = new Book(title, author, pages, read);
+  myLibrary.push(book);
+}
+
+function loadBooks() {
+    for (let i = 0; i < myLibrary.length; i++) {
+        const BOOK = myLibrary[i];
+        const TABLE = document.getElementById("books")
+    }
 }
